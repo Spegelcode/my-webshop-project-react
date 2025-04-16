@@ -1,0 +1,21 @@
+.custom-btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: linear-gradient(135deg, #6e8efb, #a777e3);
+    color: white;
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+  }
+  
+  .custom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+  
+  .custom-btn:active {
+    transform: scale(0.98);
+  }
+  

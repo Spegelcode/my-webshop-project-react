@@ -1,0 +1,177 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+  }
+  
+  /* Home Page Container */
+  .home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header Section */
+  .home-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    background-color: #111;
+    color: #00dfc4;
+    padding: 3rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  }
+  
+  .home-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+  
+  .home-header p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  
+  /* About Us Section */
+  .home-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .home-intro h2 {
+    font-size: 2.8rem;
+    color: #333;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+  
+  .home-intro p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.8;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  /* Features Section */
+  .home-features {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+  
+  .feature {
+    width: 32%;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .feature:hover {
+    transform: translateY(-5px);
+  }
+  
+  .feature h3 {
+    font-size: 1.8rem;
+    color: #00dfc4;
+    margin-bottom: 1rem;
+    text-transform: capitalize;
+  }
+  
+  .feature p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* Contact Section */
+  .home-contact {
+    text-align: center;
+    background-color: #111;
+    padding: 3rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    color: #00dfc4;
+  }
+  
+  .home-contact h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  
+  .home-contact p {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .home-contact button {
+    background-color: #00dfc4;
+    color: #111;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+  }
+  
+  .home-contact button:hover {
+    background-color: #007b85;
+    transform: translateY(-3px);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .home-features {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  
+    .feature {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .home-header h1 {
+      font-size: 2.5rem;
+    }
+  
+    .home-intro h2 {
+      font-size: 2.2rem;
+    }
+  
+    .feature {
+      width: 100%;
+    }
+  }
+  
