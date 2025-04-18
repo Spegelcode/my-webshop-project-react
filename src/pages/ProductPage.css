@@ -30,13 +30,13 @@
 .product-categories {
   display: flex;
   flex-direction: column;
-  align-items: center; /* centers each .product-main-grid block */
+  align-items: center; 
 }
 
 .product-main-grid {
   display: flex;
   flex-direction: column;
-  align-items: center; /* centers each .product-main-grid block */
+  align-items: center; 
   margin-bottom: 2rem;
 }
 

@@ -13,13 +13,20 @@ const images = Object.keys(imageModules).map((key) => ({
 const Home = () => {
   return (
     <div className="home-container">
+
           <header className="home-header">
+             
+          {images
+      .filter((img) => img.name === 'logo2.png')
+      .map((img) => (
+        <img key={img.name} src={img.src} alt={img.name} className="logo-image" />
+      ))}        
     <h1>Welcome to Luxury Collections</h1>
     <p>Your exclusive destination for luxury watches, eyewear, bags, and jewelry.</p>
   </header>  
-          {/* Filter images to find bag.jpg */}
+         
     {images
-      .filter((img) => img.name === 'stockholm.jpg') // Match the name of your image
+      .filter((img) => img.name === 'stockholm.jpg')
       .map((img) => (
         <img key={img.name} src={img.src} alt={img.name} className="home-image" />
       ))}

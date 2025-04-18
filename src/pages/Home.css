@@ -60,31 +60,32 @@ h1, h2, h3 {
 
 .home-intro h2 {
   font-size: 2.8rem;
-  color: #DCDCDC; /* Off-White */
+  color: #DCDCDC;
   margin-bottom: 1rem;
   text-transform: uppercase;
 }
 
 .home-intro p {
   font-size: 1.1rem;
-  color: #A6A6A6; /* Light Gray */
+  color: #A6A6A6;
   line-height: 1.8;
   max-width: 900px;
   margin: 0 auto;
   padding: 0 1rem;
 }
 
-/* Features Section */
+
 .home-features {
   display: flex;
   justify-content: space-between;
   gap: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
 }
 
 .feature {
   width: 32%;
-  background-color: #5A5A5A; /* Mid Gray */
+  background-color: #5A5A5A; 
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
@@ -98,43 +99,43 @@ h1, h2, h3 {
 
 .feature h3 {
   font-size: 1.8rem;
-  color: #81a39f; /* Accent Color */
+  color: #81a39f; 
   margin-bottom: 1rem;
   text-transform: capitalize;
 }
 
 .feature p {
   font-size: 1rem;
-  color: #DCDCDC; /* Off-White */
+  color: #DCDCDC; 
   line-height: 1.6;
 }
 
-/* Contact Section */
+
 .home-contact {
   text-align: center;
-  background-color: #111; /* Rich Black */
+  background-color: #111;
   padding: 3rem;
   border-radius: 8px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  color: #00dfc4; /* Accent Color */
+  color: #00dfc4; 
 }
 
 .home-contact h2 {
   font-size: 2.5rem;
-  color: #DCDCDC; /* Off-White */
+  color: #DCDCDC; 
   margin-bottom: 1rem;
 }
 
 .home-contact p {
   font-size: 1.1rem;
-  color: #A6A6A6; /* Light Gray */
+  color: #A6A6A6;
   line-height: 1.6;
   margin-bottom: 2rem;
 }
 
 .home-contact button {
-  background-color: #829b98; /* Accent Color */
-  color: #111; /* Rich Black */
+  background-color: #829b98; 
+  color: #111;
   padding: 1rem 2rem;
   font-size: 1.2rem;
   border: none;
@@ -145,31 +146,37 @@ h1, h2, h3 {
 }
 
 .home-contact button:hover {
-  background-color: #9fc1c4; /* Darker Accent Color */
+  background-color: #9fc1c4;
   transform: translateY(-3px);
 }
 
 
 .image-row {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
   width: 100%;
-  margin: 0 auto 20px auto; /* center the grid */
+  margin: 0 auto 20px auto; 
 }
 
-
-.home-image {
-  width: 100%;/* or whatever size fits your layout */
+.logo-image {
+  width: 100%; 
   height: 100%;
   border-radius: 20px;
   object-fit: cover;
 }
 
-/* Responsive Styles */
+.home-image {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+
 @media (max-width: 1024px) {
   .home-features {
       flex-direction: column;

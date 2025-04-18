@@ -1,37 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import './Navbar.css';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useCart } from "../context/CartContext";
+import './NavBar.css';
+import './buttons.css';
 
-const Navbar = () => {
+const imageModules = import.meta.glob('../assets/*.{png,jpg,jpeg,svg}', { eager: true });
+
+const images = Object.keys(imageModules).map((key) => ({
+  name: key.split('/').pop(),
+  src: imageModules[key].default,
+}));
+
+const NavBar = () => {
+  const navigate = useNavigate();
+  const { cartItems, removeFromCart, getTotalQuantity } = useCart();
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Lock body scroll when menu is open
-  useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-  }, [menuOpen]);
-
-  const handleNavClick = () => setMenuOpen(false);
+  const toggleCart = () => {
+    setIsCartOpen((prev) => !prev);
+  };
 
   return (
     <nav className="navbar">
-      <div className="logo">MyShop</div>
+      <h1 className="logo" onClick={() => { navigate('/'); setMenuOpen(false); }}>
+        Luxury Collections
+      </h1>
 
-      <div className={`nav-buttons ${menuOpen ? 'open' : ''}`}>
-        <button className="nav-btn" onClick={handleNavClick}>Home</button>
-        <button className="nav-btn" onClick={handleNavClick}>Products</button>
-        <button className="nav-btn" onClick={handleNavClick}>Contact</button>
-        <div className="cart-wrapper">
-          <button className="nav-btn" onClick={handleNavClick}>Cart</button>
-          {/* Optional dropdown here */}
-        </div>
-      </div>
-
+      {/* Burger Icon */}
       <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>
         <div className={`bar ${menuOpen ? 'rotate-top' : ''}`}></div>
         <div className={`bar ${menuOpen ? 'fade-out' : ''}`}></div>
         <div className={`bar ${menuOpen ? 'rotate-bottom' : ''}`}></div>
       </div>
+
+      {/* Nav Buttons */}
+      <div className={`nav-buttons ${menuOpen ? 'open' : ''}`}>
+        <button onClick={() => { navigate('/'); setMenuOpen(false); }} className="nav-btn">Home</button>
+        <button onClick={() => { navigate('/shop'); setMenuOpen(false); }} className="nav-btn">Shop</button>
+        <button onClick={() => { navigate('/about'); setMenuOpen(false); }} className="nav-btn">About</button>
+
+        {/* Cart Button */}
+        <div className="cart-wrapper">
+          <button className="nav-btn" onClick={toggleCart}>
+            🛒 ({getTotalQuantity()})
+          </button>
+
+          {/* Cart Dropdown */}
+          {isCartOpen && (
+            <div className="cart-dropdown">
+              {cartItems.length === 0 ? (
+                <p className="empty-cart">Your cart is empty.</p>
+              ) : (
+                <ul className="cart-items">
+                  {cartItems.map(item => (
+                    <li key={item.id} className="cart-item">
+                      <img src={item.thumbnail} alt={item.title} className="cart-img" />
+                      <div>
+                        <p>{item.title}</p>
+                        <p>Qty: {item.quantity}</p>
+                        <p>${item.price}</p>
+                        <button onClick={() => removeFromCart(item.id)}>Remove</button>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <button className="nav-btn checkout-btn" onClick={() => { navigate('/checkout'); setMenuOpen(false); }}>
+                Go to Checkout
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
     </nav>
   );
 };
 
-export default Navbar;
+export default NavBar;

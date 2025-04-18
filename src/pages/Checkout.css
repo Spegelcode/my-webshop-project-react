@@ -9,12 +9,12 @@
     width: 100%;
     padding: 0.8rem;
     margin-bottom: 1rem;
-    border: 1px solid #ccc;
+    border: 1px solid #000000;
     border-radius: 8px;
   }
   
   .checkout-form button {
-    background-color: #4caf50;
+    background-color: #819482;
     color: white;
     padding: 0.9rem 1.5rem;
     border: none;
@@ -25,8 +25,9 @@
   
   .checkout-summary {
     margin-top: 2rem;
-    background-color: #f5f5f5;
+    background-color: #dacdcd;
     padding: 1rem;
     border-radius: 8px;
+    color: #000000;
   }
   

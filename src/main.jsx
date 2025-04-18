@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';  // Your global CSS styles
-import App from './App';  // Your App component
+import './index.css';  
+import App from './App';  
 import { BrowserRouter } from 'react-router-dom';
 import { CartProvider } from './context/CartContext';
 

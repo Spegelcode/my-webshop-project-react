@@ -11,11 +11,11 @@ const ProductPage = () => {
 
   useEffect(() => {
     const categories = [
-      'mens-watches',
-      'womens-watches',
-      'womens-bags',
-      'womens-jewellery',
-      'sunglasses',
+      'Mens-watches',
+      'Womens-watches',
+      'Womens-bags',
+      'Womens-jewellery',
+      'Sunglasses',
     ];
 
     Promise.all(
