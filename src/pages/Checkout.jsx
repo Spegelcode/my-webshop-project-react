@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import "./Checkout.css";
 
+
 const Checkout = () => {
   const { cartItems, clearCart } = useCart();
   const [orderPlaced, setOrderPlaced] = useState(false);
@@ -35,6 +36,27 @@ const Checkout = () => {
     return <h2>✅ Thank you for your order, {formData.name}!</h2>;
   }
 
+  const handleStripeCheckout = async () => {
+    try {
+      const response = await fetch("http://localhost:4242/create-checkout-session", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cartItems }),
+      });
+  
+      const data = await response.json();
+  
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("Something went wrong. Could not redirect to Stripe.");
+      }
+    } catch (error) {
+      console.error("Stripe checkout error:", error);
+      alert("Stripe checkout failed.");
+    }
+  };
+
   return (
     <div className="checkout-container">
       <h2>Checkout</h2>
@@ -60,7 +82,18 @@ const Checkout = () => {
           value={formData.address}
           onChange={handleChange}
         />
-        <button type="submit">Place Order</button>
+        <div className="checkout-buttons">
+                  <button type="submit">Place Order</button>
+
+        <button
+  type="button"
+  className="stripe-checkout-btn"
+  onClick={handleStripeCheckout}
+>
+  💳 Pay with Stripe
+</button>
+        </div>
+
       </form>
 
       <div className="checkout-summary">

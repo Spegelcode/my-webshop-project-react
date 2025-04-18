@@ -14,7 +14,7 @@
   }
   
   .checkout-form button {
-    background-color: #819482;
+    background-color: #464646;
     color: white;
     padding: 0.9rem 1.5rem;
     border: none;
@@ -25,9 +25,31 @@
   
   .checkout-summary {
     margin-top: 2rem;
-    background-color: #dacdcd;
+    background-color: #e7e7e7;
     padding: 1rem;
     border-radius: 8px;
     color: #000000;
   }
   
+  .stripe-checkout-btn {
+    background-color: #e4e4e4;
+    color: #fff;
+   
+    border: none;
+
+    cursor: pointer;
+
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    
+  }
+  
+  .stripe-checkout-btn:hover {
+    background-color: #5469d4;
+  }
+
+  .checkout-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+  }
