@@ -1,31 +1,37 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useCart } from "../context/CartContext"; // Adjust path if needed
-import './NavBar.css';
-import './buttons.css';
+import React, { useState, useEffect } from 'react';
+import './Navbar.css';
 
-const NavBar = () => {
-  const navigate = useNavigate();
-  const { getTotalQuantity } = useCart();
-  const cartCount = getTotalQuantity();
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  // Lock body scroll when menu is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : '';
+  }, [menuOpen]);
+
+  const handleNavClick = () => setMenuOpen(false);
 
   return (
     <nav className="navbar">
-      <h1 className="logo">My Webshop</h1>
-      <div className="nav-buttons">
-        <button onClick={() => navigate('/')} className="nav-btn">Home</button>
-        <button onClick={() => navigate('/shop')} className="nav-btn">Shop</button>
-        <button onClick={() => navigate('/about')} className="nav-btn">About</button>
+      <div className="logo">MyShop</div>
+
+      <div className={`nav-buttons ${menuOpen ? 'open' : ''}`}>
+        <button className="nav-btn" onClick={handleNavClick}>Home</button>
+        <button className="nav-btn" onClick={handleNavClick}>Products</button>
+        <button className="nav-btn" onClick={handleNavClick}>Contact</button>
         <div className="cart-wrapper">
-          <button onClick={() => navigate('/cart')} className="nav-btn cart-btn">
-            Cart
-            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-          </button>
+          <button className="nav-btn" onClick={handleNavClick}>Cart</button>
+          {/* Optional dropdown here */}
         </div>
-        <button onClick={() => navigate('/checkout')} className="nav-btn">Checkout</button>
+      </div>
+
+      <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>
+        <div className={`bar ${menuOpen ? 'rotate-top' : ''}`}></div>
+        <div className={`bar ${menuOpen ? 'fade-out' : ''}`}></div>
+        <div className={`bar ${menuOpen ? 'rotate-bottom' : ''}`}></div>
       </div>
     </nav>
   );
 };
 
-export default NavBar;
+export default Navbar;

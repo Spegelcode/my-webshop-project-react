@@ -1,39 +1,96 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ProductPage.css'; // Assuming you have a CSS file for styling
+import { useCart } from '../context/CartContext';
+import './ProductPage.css';
 
 const ProductPage = () => {
-  const [products, setProducts] = useState([]);
+  const [productsByCategory, setProductsByCategory] = useState({});
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   useEffect(() => {
-    fetch('https://dummyjson.com/products')
-      .then(res => res.json())
-      .then(data => setProducts(data.products));
+    const categories = [
+      'mens-watches',
+      'womens-watches',
+      'womens-bags',
+      'womens-jewellery',
+      'sunglasses',
+    ];
+
+    Promise.all(
+      categories.map((cat) =>
+        fetch(`https://dummyjson.com/products/category/${cat}`)
+          .then(res => res.json())
+          .then(data => ({ category: cat, products: data.products }))
+      )
+    ).then((results) => {
+      const grouped = {};
+      results.forEach(({ category, products }) => {
+        grouped[category] = products;
+      });
+      setProductsByCategory(grouped);
+    });
   }, []);
 
   return (
-<div className="product-page">
-  <h1>Product Page</h1>
-  <div className="product-grid">
-    {products.map((product) => (
-      <div
-        key={product.id}
-        className="product-card"
-        onClick={() => navigate(`/product/${product.id}`)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === 'Enter' && navigate(`/product/${product.id}`)}
-      >
-        <img src={product.thumbnail} alt={product.title} width="150" />
-        <h3>{product.title}</h3>
-        <p>${product.price}</p>
+    <div className="product-page">
+
+
+      {/* Category Buttons */}
+      <div className="category-buttons">
+        {Object.keys(productsByCategory).map((category) => (
+          <button
+            key={category}
+            className={selectedCategory === category ? 'active' : ''}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category.replace('-', ' ')}
+          </button>
+        ))}
+        <button
+          onClick={() => setSelectedCategory(null)}
+          className={!selectedCategory ? 'active' : ''}
+        >
+          Show all
+        </button>
       </div>
-    ))}
-  </div>
-</div>
 
-
+      <div className="product-categories">
+        {Object.entries(productsByCategory)
+          .filter(([category]) => !selectedCategory || selectedCategory === category)
+          .map(([category, products]) => (
+            <div className='product-main-grid' key={category}>
+              <h2 style={{ textTransform: 'capitalize' }}>{category.replace('-', ' ')}</h2>
+              <div className="product-grid">
+                {products.map((product) => (
+                  <div
+                    key={product.id}
+                    className="product-card"
+                    onClick={() => navigate(`/product/${product.id}`)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => e.key === 'Enter' && navigate(`/product/${product.id}`)}
+                  >
+                    <img src={product.thumbnail} alt={product.title} width="150" />
+                    <h3>{product.title}</h3>
+                    <p>${product.price}</p>
+                    <button
+                      className='addButton'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(product);
+                      }}
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

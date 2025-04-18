@@ -67,6 +67,7 @@ const Checkout = () => {
         <h3>Order Summary</h3>
         {cartItems.map((item) => (
           <div key={item.id}>
+            <img src={item.thumbnail} alt={item.title} className="cart-img" />
             {item.title} × {item.quantity} — ${item.price * item.quantity}
           </div>
         ))}
