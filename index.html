@@ -2,12 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="public/logo2.png" />
+    <!-- Favicon-fix: relative to /public, så bara "logo2.png" -->
+    <link rel="icon" href="logo2.png" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- 🔒 Security header to allow images from GitHub Pages + data URIs -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://spegelcode.github.io data:;">
+
     <title>Luxury Collections</title>
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- 📦 For GitHub Pages: relative path to main.jsx (remove starting slash) -->
+    <script type="module" src="src/main.jsx"></script>
   </body>
 </html>
