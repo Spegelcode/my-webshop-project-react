@@ -35,6 +35,7 @@ const Checkout = () => {
   if (orderPlaced) {
     return <h2>✅ Thank you for your order, {formData.name}!</h2>;
   }
+  
 
   const handleStripeCheckout = async () => {
     try {
