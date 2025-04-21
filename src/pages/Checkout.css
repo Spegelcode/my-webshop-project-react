@@ -1,55 +1,53 @@
 .checkout-container {
-    padding: 2rem;
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  .checkout-form input,
-  .checkout-form textarea {
-    width: 100%;
-    padding: 0.8rem;
-    margin-bottom: 1rem;
-    border: 1px solid #000000;
-    border-radius: 8px;
-  }
-  
-  .checkout-form button {
-    background-color: #464646;
-    color: white;
-    padding: 0.9rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .checkout-summary {
-    margin-top: 2rem;
-    background-color: #e7e7e7;
-    padding: 1rem;
-    border-radius: 8px;
-    color: #000000;
-  }
-  
-  .stripe-checkout-btn {
-    background-color: #e4e4e4;
-    color: #fff;
-   
-    border: none;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 0 auto;
+}
 
-    cursor: pointer;
+.checkout-form input,
+.checkout-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #5A5A5A; /* Mid Gray */
+  border-radius: 8px;
+  background-color: #2C2C2C; /* Dark Gray */
+  color: #DCDCDC; /* Off-White */
+}
 
-    font-weight: bold;
-    transition: background-color 0.2s ease;
-    
-  }
-  
-  .stripe-checkout-btn:hover {
-    background-color: #5469d4;
-  }
+.checkout-form button {
+  background-color: #00dfc4; /* Accent Color */
+  color: #111; /* Rich Black */
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
 
-  .checkout-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 1rem;
-  }
+.checkout-summary {
+  margin-top: 2rem;
+  background-color: #2C2C2C; /* Dark Gray */
+  padding: 1rem;
+  border-radius: 8px;
+  color: #DCDCDC; /* Off-White */
+}
+
+.stripe-checkout-btn {
+  background-color: #5A5A5A; /* Mid Gray */
+  color: #DCDCDC; /* Off-White */
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s ease;
+}
+
+.stripe-checkout-btn:hover {
+  background-color: #007b85; /* Darker Accent Color */
+}
+
+.checkout-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}

@@ -13,13 +13,29 @@ const images = Object.keys(imageModules).map((key) => ({
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { cartItems, removeFromCart, getTotalQuantity } = useCart();
+  const { cartItems, removeFromCart, getTotalQuantity, handleQuantityChange } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
   };
+
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+
+  const updateItemQuantity = (id, quantity) => {
+    if (quantity <= 0) return; // Prevent negative quantities
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity } : item
+      )
+    );
+  }
+
 
   return (
     <nav className="navbar">
@@ -59,7 +75,10 @@ const NavBar = () => {
                       <div>
                         <p>{item.title}</p>
                         <p>Qty: {item.quantity}</p>
-                        <p>${item.price}</p>
+                        <p>Total: ${totalPrice.toFixed(2)}</p>
+                        <button onClick={() => handleQuantityChange(item, "decrease")}>-</button>
+                <span>{item.quantity}</span>
+                <button onClick={() => handleQuantityChange(item, "increase")}>+</button>
                         <button onClick={() => removeFromCart(item.id)}>Remove</button>
                       </div>
                     </li>

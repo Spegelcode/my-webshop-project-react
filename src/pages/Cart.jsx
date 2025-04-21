@@ -30,9 +30,7 @@ const Cart = () => {
             <h3>{item.title}</h3>
             <p>${item.price} x {item.quantity}</p>
             <div className="cart-buttons">
-              <button onClick={() => decreaseFromCart(item.id)}>-</button>
-              <button onClick={() => addToCart(item)}>+</button>
-              <button onClick={() => removeFromCart(item.id)}>Remove</button>
+
             </div>
           </div>
         </div>
