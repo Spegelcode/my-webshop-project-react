@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css'; // Assuming you have a CSS file for styling
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -11,7 +12,15 @@ const images = Object.keys(imageModules).map((key) => ({
 }));
 
 const Home = () => {
+
+const navigate = useNavigate();
+
+
   return (
+
+
+
+
     <div className="home-container">
 
           <header className="home-header">
@@ -61,9 +70,11 @@ const Home = () => {
       ))}
   </div>
 
-        <h2>Contact Us</h2>
-        <p>Have any questions or need assistance finding the perfect luxury piece? Our team is ready to help. Reach out to us for personalized advice and exclusive offers.</p>
-        <button>Contact Us</button>
+  <h2>Our Mission</h2>
+<p>We strive to bring the finest luxury pieces to those who value quality and craftsmanship. Whether you have questions or need help discovering the perfect item, our dedicated team is here to support you every step of the way.</p>
+<button onClick={() => { navigate('/about'); setMenuOpen(false); }} className="nav-btn">Read More</button>
+
+
       </section>
     </div>
   );

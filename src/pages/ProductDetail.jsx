@@ -14,7 +14,11 @@ const ProductDetails = () => {
       .then((data) => setProduct(data));
   }, [id]);
 
-  if (!product) return <p>Loading...</p>;
+  if (!product) return <div class="loader">
+  <span class="bar"></span>
+  <span class="bar"></span>
+  <span class="bar"></span>
+</div>;
 
   return (
     <div className="product-details">     
@@ -26,7 +30,6 @@ const ProductDetails = () => {
 
       <p>{product.description}</p>
       <p><strong>Price:</strong> ${product.price}</p>
-      <p><strong>Discount:</strong> {product.discountPercentage}%</p>
       <p><strong>Category:</strong> {product.category}</p>
       <p><strong>Brand:</strong> {product.brand}</p>
       <p><strong>Rating:</strong> {product.rating}</p>

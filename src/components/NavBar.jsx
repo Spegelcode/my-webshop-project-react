@@ -27,14 +27,7 @@ const NavBar = () => {
   );
 
 
-  const updateItemQuantity = (id, quantity) => {
-    if (quantity <= 0) return; // Prevent negative quantities
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, quantity } : item
-      )
-    );
-  }
+
 
 
   return (
@@ -54,7 +47,7 @@ const NavBar = () => {
       <div className={`nav-buttons ${menuOpen ? 'open' : ''}`}>
         <button onClick={() => { navigate('/'); setMenuOpen(false); }} className="nav-btn">Home</button>
         <button onClick={() => { navigate('/shop'); setMenuOpen(false); }} className="nav-btn">Shop</button>
-        <button onClick={() => { navigate('/about'); setMenuOpen(false); }} className="nav-btn">About</button>
+        <button onClick={() => { navigate('/about'); setMenuOpen(false); }} className="nav-btn">Mission</button>
 
         {/* Cart Button */}
         <div className="cart-wrapper">

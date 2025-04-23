@@ -2,6 +2,7 @@
   padding: 2rem;
   max-width: 600px;
   margin: 0 auto;
+
 }
 
 .checkout-form input,
@@ -50,4 +51,26 @@
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
+}
+
+.cart-item-details{
+  font-size: 1.2rem;
+  color: #5A5A5A; /* Off-White */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin-bottom: 1rem;
+  background-color: rgb(24, 24, 24);
+  border-radius: 15px;
+  padding: 1rem;
+}
+
+
+.cart-dropdown {
+  background-color: #222222;
+  color: #DCDCDC; /* Off-White */
+
+  border-radius: 8px;
+  
 }

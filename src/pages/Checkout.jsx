@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
 import "./Checkout.css";
+import { ServerRouter } from "react-router-dom";
 
 const Checkout = () => {
-  const { cartItems, clearCart, updateItemQuantity, handleQuantityChange } = useCart();
+  const { cartItems, clearCart, handleQuantityChange, removeFromCart } = useCart();
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -39,17 +40,29 @@ const Checkout = () => {
     clearCart();
     setOrderPlaced(true);
   };
-
+   // Jobba på denna 
   if (orderPlaced) {
     return <h2>✅ Thank you for your order, {formData.name}!</h2>;
   }
+
+  const handleStripeCheckout = async () => {
+    const response = await fetch('http://localhost:4242/create-checkout-session', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cartItems }),
+    });
+  
+    const data = await response.json();
+    window.location.href = data.url;
+  };
+
 
   
 
 
   return (
     <div className="checkout-container">
-      <h2>Checkout</h2>
+
 
       {cartItems.length === 0 && (
         <div className="empty-cart">Your cart is empty. Please add items to your cart before checking out.</div>
@@ -65,8 +78,10 @@ const Checkout = () => {
                 <button onClick={() => handleQuantityChange(item, "decrease")}>-</button>
                 <span>{item.quantity}</span>
                 <button onClick={() => handleQuantityChange(item, "increase")}>+</button>
+
               </div>
-              <p>${item.price * item.quantity.toFixed(2)}</p>
+              <p>Total: ${totalPrice.toFixed(2)}</p>
+              <button onClick={() => removeFromCart(item.id)}>Remove</button>
             </div>
           </div>
         ))}
@@ -100,13 +115,16 @@ const Checkout = () => {
         </div>
       </form>
 
-      {cartItems.length > 0 && (
-        <button onClick={() => alert("Proceeding to Stripe checkout...")}>Checkout with Stripe</button>
-      )}
 
-      <div className="checkout-total">
-        <h3>Total: ${totalPrice.toFixed(2)}</h3>
-      </div>
+
+
+<button
+  type="button"
+  className="stripe-checkout-btn"
+  onClick={handleStripeCheckout}
+>
+  💳 Pay with Stripe
+</button>
     </div>
   );
 };

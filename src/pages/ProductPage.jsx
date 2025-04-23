@@ -24,16 +24,33 @@ const ProductPage = () => {
           .then(res => res.json())
           .then(data => ({ category: cat, products: data.products }))
       )
+      
     ).then((results) => {
       const grouped = {};
       results.forEach(({ category, products }) => {
         grouped[category] = products;
       });
       setProductsByCategory(grouped);
+
+    }).catch((error) => {
+      console.error('Error fetching products:', error);
+      
     });
   }, []);
+ 
+  if (Object.keys(productsByCategory).length === 0) {
+    return (
+      <div className="loader">
+        <span className="bar"></span>
+        <span className="bar"></span>
+        <span className="bar"></span>
+      </div>
+    );
+  }
+
 
   return (
+    
     <div className="product-page">
 
 

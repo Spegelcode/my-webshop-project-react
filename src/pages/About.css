@@ -13,12 +13,12 @@
 
 .about-header h1 {
   font-size: 2.8rem;
-  color: #000;
+  color: #5A5A5A;
 }
 
 .about-header p {
   font-size: 1.2rem;
-  color: #666;
+  color: #5A5A5A;
 }
 
 .about-story,
@@ -32,7 +32,7 @@
 .about-values h2 {
   font-size: 1.8rem;
   margin-bottom: 10px;
-  color: #222;
+  color: #5A5A5A;
 }
 
 .about-values ul {

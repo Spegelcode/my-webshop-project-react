@@ -1,11 +1,15 @@
+require('dotenv').config();
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const express = require('express');
 const Stripe = require('stripe');
 const cors = require('cors');
 
 const app = express();
-const stripe = new Stripe("sk_test_51R7Cog2YSZsKT8ZBACETT8Dga9JGq6awMxomOiSnHPhL4ReS0CaCgitvZLVDzUfvb7qY2KXVpPIZSRphE9CRiwYk00l21F2MXT");
 
-app.use(cors({ origin: "http://localhost:5177",
+const morgan = require('morgan');
+app.use(morgan('dev'));
+
+app.use(cors({ origin: "http://localhost:5173",
   credentials: true,
  }));
 app.use(express.json());
@@ -30,8 +34,8 @@ app.post('/create-checkout-session', async (req, res) => {
       payment_method_types: ['card'],
       line_items,
       mode: 'payment',
-      success_url: 'http://localhost:5177/success',
-      cancel_url: 'http://localhost:5177/cancel',
+      success_url: 'http://localhost:5173/success',
+      cancel_url: 'http://localhost:5173/cancel',
     });
 
     res.json({ url: session.url });
