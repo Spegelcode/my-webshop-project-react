@@ -13,13 +13,22 @@ const images = Object.keys(imageModules).map((key) => ({
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { cartItems, removeFromCart, getTotalQuantity } = useCart();
+  const { cartItems, removeFromCart, getTotalQuantity, handleQuantityChange } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
   };
+
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+
+
+
 
   return (
     <nav className="navbar">
@@ -38,7 +47,7 @@ const NavBar = () => {
       <div className={`nav-buttons ${menuOpen ? 'open' : ''}`}>
         <button onClick={() => { navigate('/'); setMenuOpen(false); }} className="nav-btn">Home</button>
         <button onClick={() => { navigate('/shop'); setMenuOpen(false); }} className="nav-btn">Shop</button>
-        <button onClick={() => { navigate('/about'); setMenuOpen(false); }} className="nav-btn">About</button>
+        <button onClick={() => { navigate('/about'); setMenuOpen(false); }} className="nav-btn">Mission</button>
 
         {/* Cart Button */}
         <div className="cart-wrapper">
@@ -59,7 +68,10 @@ const NavBar = () => {
                       <div>
                         <p>{item.title}</p>
                         <p>Qty: {item.quantity}</p>
-                        <p>${item.price}</p>
+                        <p>Total: ${totalPrice.toFixed(2)}</p>
+                        <button onClick={() => handleQuantityChange(item, "decrease")}>-</button>
+                <span>{item.quantity}</span>
+                <button onClick={() => handleQuantityChange(item, "increase")}>+</button>
                         <button onClick={() => removeFromCart(item.id)}>Remove</button>
                       </div>
                     </li>

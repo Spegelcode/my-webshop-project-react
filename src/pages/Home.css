@@ -207,4 +207,8 @@ h1, h2, h3 {
     width: 100%;
     height: auto;
   }
+  .home-container {
+    width: 100%;
+    max-width: 100%;
+  }
 }

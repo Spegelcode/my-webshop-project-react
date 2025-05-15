@@ -6,8 +6,9 @@ const About = () => {
   return (
     <div className="about-container">
       <header className="about-header">
-        <h1>About Luxury Collections</h1>
-        <p>Discover the story behind our exclusive brand.</p>
+        <h1>
+          Welcome to Luxury Collections
+        </h1>
       </header>
 
       <section className="about-story">
