@@ -3,24 +3,28 @@ import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import './NavBar.css';
 import './buttons.css';
+// Dynamically import images from the assets folder
 
+
+// Import images from asset folder, no need to import all img sepretely
 const imageModules = import.meta.glob('../assets/*.{png,jpg,jpeg,svg}', { eager: true });
 
+// Map the imported images to an array of objects
 const images = Object.keys(imageModules).map((key) => ({
   name: key.split('/').pop(),
   src: imageModules[key].default,
 }));
 
+// This component handles the navigation bar, including the cart functionality and responsive design.
 const NavBar = () => {
   const navigate = useNavigate();
-  const { cartItems, removeFromCart, getTotalQuantity, handleQuantityChange } = useCart();
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-
+  const { cartItems, removeFromCart, getTotalQuantity, handleQuantityChange } = useCart(); // Access cart context for cart items and functions
+  const [isCartOpen, setIsCartOpen] = useState(false); // State to manage cart visibility
+  const [menuOpen, setMenuOpen] = useState(false); // State to manage mobile/Burger menu visibility
   const toggleCart = () => {
     setIsCartOpen((prev) => !prev);
-  };
-
+  }; // Function to toggle cart visibility
+  // Calculate the total price of items in the cart
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0

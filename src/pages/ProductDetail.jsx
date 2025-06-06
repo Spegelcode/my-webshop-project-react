@@ -3,21 +3,22 @@ import { useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import "./ProductDetail.css";
 
+// This component fetches and displays the details of a specific product based on the product ID from the URL.
 const ProductDetails = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const { addToCart } = useCart();
-
+  const { id } = useParams(); // Get the product ID from the URL parameters
+  const [product, setProduct] = useState(null); // State to hold the product details
+  const { addToCart } = useCart(); // Access the addToCart function from the CartContext
+// Fetch product details from the API when the component mounts or when the ID changes
   useEffect(() => {
     fetch(`https://dummyjson.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [id]);
-
-  if (!product) return <div class="loader">
-  <span class="bar"></span>
-  <span class="bar"></span>
-  <span class="bar"></span>
+// If the product is not yet loaded, show a loading spinner
+  if (!product) return <div className="loader">
+  <span className="bar"></span>
+  <span className="bar"></span>
+  <span className="bar"></span>
 </div>;
 
   return (
@@ -27,7 +28,7 @@ const ProductDetails = () => {
       <img src={product.thumbnail} alt={product.title} />
       <h2>{product.title}</h2>
   <button onClick={() => addToCart(product)}>Add to Cart</button>
-
+    
       <p>{product.description}</p>
       <p><strong>Price:</strong> ${product.price}</p>
       <p><strong>Category:</strong> {product.category}</p>
@@ -37,8 +38,8 @@ const ProductDetails = () => {
       <p><strong>Weight:</strong> {product.weight}g</p>
 
       <p><strong>Dimensions:</strong> 
-        {product.dimensions?.width} x 
-        {product.dimensions?.height} x 
+        {product.dimensions?.width} cm 
+        {product.dimensions?.height} cm 
         {product.dimensions?.depth} cm
       </p>
 
@@ -47,11 +48,6 @@ const ProductDetails = () => {
       <p><strong>Return Policy:</strong> {product.returnPolicy}</p>
 
       <p><strong>Tags:</strong> {product.tags?.join(", ")}</p>
-
-
-
-
-
 
       <div>
         <h3>Reviews</h3>

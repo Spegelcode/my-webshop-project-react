@@ -23,7 +23,7 @@ function App() {
   <Route path="/about" element={<About />} />
 </Routes>
     </div>
-  );
+  );// The App component serves as the main entry point for the application, rendering the NavBar and defining the routes for different pages.
 }
 
 export default App;

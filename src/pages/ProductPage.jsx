@@ -4,10 +4,10 @@ import { useCart } from '../context/CartContext';
 import './ProductPage.css';
 
 const ProductPage = () => {
-  const [productsByCategory, setProductsByCategory] = useState({});
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const navigate = useNavigate();
-  const { addToCart } = useCart();
+  const [productsByCategory, setProductsByCategory] = useState({});// State to hold products grouped by category
+  const [selectedCategory, setSelectedCategory] = useState(null);// State to track the currently selected category
+  const navigate = useNavigate();// Hook to navigate to product details
+  const { addToCart } = useCart();// Access the addToCart function from the CartContext
 
   useEffect(() => {
     const categories = [
@@ -16,24 +16,24 @@ const ProductPage = () => {
       'Womens-bags',
       'Womens-jewellery',
       'Sunglasses',
-    ];
+    ];// List of categories to fetch products for
 
     Promise.all(
       categories.map((cat) =>
         fetch(`https://dummyjson.com/products/category/${cat}`)
           .then(res => res.json())
           .then(data => ({ category: cat, products: data.products }))
-      )
+      )// Fetch products for each category
       
     ).then((results) => {
       const grouped = {};
       results.forEach(({ category, products }) => {
         grouped[category] = products;
-      });
-      setProductsByCategory(grouped);
+      });// Group products by category
+      setProductsByCategory(grouped);// Update state with grouped products
 
     }).catch((error) => {
-      console.error('Error fetching products:', error);
+      console.error('Error fetching products:', error);// Handle any errors that occur during the fetch
       
     });
   }, []);
@@ -45,7 +45,7 @@ const ProductPage = () => {
         <span className="bar"></span>
         <span className="bar"></span>
       </div>
-    );
+    );// Show a loading spinner if products are still being fetched
   }
 
 

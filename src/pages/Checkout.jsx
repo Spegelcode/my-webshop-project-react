@@ -3,14 +3,18 @@ import { useCart } from "../context/CartContext";
 import "./Checkout.css";
 import { ServerRouter } from "react-router-dom";
 
+
+// This component handles the checkout process, including displaying cart items, handling form submission, and integrating with Stripe for payment processing (not working).
+
+
 const Checkout = () => {
-  const { cartItems, clearCart, handleQuantityChange, removeFromCart } = useCart();
-  const [orderPlaced, setOrderPlaced] = useState(false);
+  const { cartItems, clearCart, handleQuantityChange, removeFromCart } = useCart();// Access cart context for cart items and functions
+  const [orderPlaced, setOrderPlaced] = useState(false);// State to track if the order has been placed
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     address: "",
-  });
+  });// State to manage form data
 
   
 
@@ -18,12 +22,12 @@ const Checkout = () => {
     (total, item) => total + item.price * item.quantity,
     0
   );
-
+  // Function to handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
+  // Function to handle order submission
   const handleOrder = (e) => {
     e.preventDefault();
 
@@ -37,14 +41,14 @@ const Checkout = () => {
       return;
     }
 
-    clearCart();
-    setOrderPlaced(true);
+    clearCart(); // Clear the cart after placing the order
+    setOrderPlaced(true); // Set orderPlaced to true to show the thank you message
   };
-   // Jobba på denna 
+   // Work on this later
   if (orderPlaced) {
     return <h2>✅ Thank you for your order, {formData.name}!</h2>;
   }
-
+  // Function to handle Stripe checkout
   const handleStripeCheckout = async () => {
     const response = await fetch('http://localhost:4242/create-checkout-session', {
       method: 'POST',
@@ -53,7 +57,7 @@ const Checkout = () => {
     });
   
     const data = await response.json();
-    window.location.href = data.url;
+    window.location.href = data.url; // Redirect to Stripe checkout page
   };
 
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./About.css"; 
 
-
+// this is a simple About page component for a luxury collection website.
 const About = () => {
   return (
     <div className="about-container">

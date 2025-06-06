@@ -13,4 +13,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </BrowserRouter>
     </CartProvider>
   </React.StrictMode>
-);
+);// The main entry point of the application, rendering the App component wrapped in BrowserRouter and CartProvider for routing and cart context management.

@@ -1,15 +1,15 @@
 import React from 'react';
-import './Home.css'; // Assuming you have a CSS file for styling
+import './Home.css'; 
 import { useNavigate } from 'react-router-dom';
 
 
 
-const imageModules = import.meta.glob('../assets/*.{png,jpg,jpeg,svg}', { eager: true });
+const imageModules = import.meta.glob('../assets/*.{png,jpg,jpeg,svg}', { eager: true }); // Dynamically import images from the assets folder
 
 const images = Object.keys(imageModules).map((key) => ({
   name: key.split('/').pop(),
   src: imageModules[key].default,
-}));
+})); // Map the imported images to an array of objects
 
 const Home = () => {
 
@@ -72,7 +72,7 @@ const navigate = useNavigate();
 
   <h2>Our Mission</h2>
 <p>We strive to bring the finest luxury pieces to those who value quality and craftsmanship. Whether you have questions or need help discovering the perfect item, our dedicated team is here to support you every step of the way.</p>
-<button onClick={() => { navigate('/about'); setMenuOpen(false); }} className="nav-btn">Read More</button>
+<button onClick={() => { navigate('/about'); }} className="nav-btn">Read More</button>
 
 
       </section>

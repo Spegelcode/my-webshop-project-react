@@ -2,6 +2,8 @@ import React from "react";
 import './Footer.css'; 
 
 
+// Did not like the look of the footer, so i have not used it in the project.
+
 const Footer = () => {
   return (
     <footer className="footer">

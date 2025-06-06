@@ -1,10 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react";
-
+// This context provides a way to manage the shopping cart state across the application.
+// It allows adding, removing, and updating items in the cart, as well as persisting the cart state in localStorage.
 const CartContext = createContext();
-
+// This provider component wraps the application and provides the cart context to its children.
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
-    const savedCart = localStorage.getItem("cart");
+    const savedCart = localStorage.getItem("cart");// Retrieve the cart from localStorage
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
@@ -38,12 +39,12 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  // Update the quantity of an item (for + and - buttons)
+  // Update the quantity of an item
   const updateItemQuantity = (id, quantity) => {
     if (quantity <= 0) return; // Prevent negative quantities
     setCartItems((prev) =>
       prev.map((item) =>
-        item.id === id ? { ...item, quantity } : item
+        item.id === id ? { ...item, quantity } : item // Update the quantity of the item
       )
     );
   };
@@ -60,7 +61,8 @@ export const CartProvider = ({ children }) => {
   const getTotalQuantity = () => {
     return cartItems.reduce((sum, item) => sum + item.quantity, 0);
   };
-
+  // Handle quantity changes for + and - buttons
+  // We use updateItemQuantity to change the quantity of an item
   const handleQuantityChange = (item, action) => {
     if (action === "increase") {
       updateItemQuantity(item.id, item.quantity + 1);
@@ -70,6 +72,7 @@ export const CartProvider = ({ children }) => {
   };
 
   return (
+    // Provide the cart context to children components
     <CartContext.Provider
       value={{
         cartItems,
@@ -77,7 +80,7 @@ export const CartProvider = ({ children }) => {
         decreaseFromCart,
         removeFromCart,
         clearCart,
-        updateItemQuantity, // Expose the updateItemQuantity method
+        updateItemQuantity, 
         getTotalQuantity,
         handleQuantityChange,
       }}

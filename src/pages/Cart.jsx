@@ -2,6 +2,9 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 import "./Cart.css"; 
 
+// This component is not in production, but is a simple cart component that displays the items in the cart, their prices, and a button to clear the cart.
+
+
 const Cart = () => {
   const {
     cartItems,
