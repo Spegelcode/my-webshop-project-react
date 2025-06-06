@@ -8,8 +8,8 @@ import './index.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CartProvider>
-      <BrowserRouter>
-        <App />
+    <BrowserRouter basename="/my-webshop-project-react">
+            <App />
       </BrowserRouter>
     </CartProvider>
   </React.StrictMode>

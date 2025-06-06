@@ -53,7 +53,6 @@ export const CartProvider = ({ children }) => {
     setCartItems((prev) => prev.filter((item) => item.id !== id));
   };
 
-  // Clear all items in the cart
   const clearCart = () => setCartItems([]);
 
   // Get the total quantity of all items in the cart
